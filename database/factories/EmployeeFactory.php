@@ -15,11 +15,11 @@ class EmployeeFactory extends Factory
     public function definition(): array
     {
         return [
-            'first-name' => $this->faker->firstName,
-            'last-name' => $this->faker->lastName,
+            'firstName' => $this->faker->firstName,
+            'lastName' => $this->faker->lastName,
             'email' => $this->faker->safeEmail,
             'company_id' => Company::factory(),
-            'phone-number' => $this->faker->phoneNumber
+            'phoneNumber' => $this->faker->phoneNumber
         ];
     }
 }

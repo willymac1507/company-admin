@@ -15,7 +15,8 @@ class InitialUserSeeder extends Seeder
     public function run()
     {
         User::factory()->create([
-            'email' => 'email@email.com',
+            'name' => 'Administrator',
+            'email' => 'admin@admin.com',
             'password' => bcrypt('password')
         ]);
     }
