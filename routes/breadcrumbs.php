@@ -46,7 +46,7 @@ Breadcrumbs::for('showCompany', function (BreadcrumbTrail $trail, Company $compa
 });
 
 Breadcrumbs::for('editCompany', function(BreadcrumbTrail $trail, Company $company): void {
-    $trail->parent('showCompany', ['company' => $company]);
+    $trail->parent('showCompany', $company);
     $trail->push('Edit', route('editCompany', [
         'company' => $company
     ]));

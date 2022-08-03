@@ -54,14 +54,36 @@ class CompanyController extends Controller
     {
         $attributes = $this->validateCompany();
 
-        $attributes['name'] = request('name');
-        $attributes['email'] = \request('email');
-        $attributes['website'] = \request('website');
         $attributes['logo'] = request()->file('logo')->store('logos');
 
         Company::create($attributes);
 
         return redirect('/companies')->with('success', 'Your post has been created!');
+    }
+
+    public function edit(Company $company)
+    {
+        return view('companies.edit', [
+            'company' => $company
+        ]);
+    }
+
+    public function update(Company $company)
+    {
+        $attributes = $this->validateCompany($company);
+
+        if (isset($attributes['logo'])) {
+            $attributes['logo'] = request()->file('logo')->store('logos');
+        }
+
+        $company->update($attributes);
+        return redirect('/companies')->with('success', 'Company updated!');
+    }
+
+    public function destroy(Company $company)
+    {
+        $company->delete();
+        return redirect('/companies')->with('success', 'Company deleted!');
     }
 
     protected function validateCompany(?Company $company = null): array

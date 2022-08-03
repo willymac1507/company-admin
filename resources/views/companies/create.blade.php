@@ -6,7 +6,7 @@
             <form action="{{ route('createCompany') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <x-form.input name="name"/>
-                <x-form.input name="logo" type="file"/>
+                <x-form.input name="logo" type="file" required="false"/>
                 <x-form.input name="email" type="email"/>
                 <x-form.input name="website" type="url"/>
                 <div class="mt-4">

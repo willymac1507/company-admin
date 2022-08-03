@@ -4,8 +4,17 @@
         <div class="card-header fs-5">
             <div class="row">
                 <div class="col-10">Company Details</div>
-                <div class="col text-end"><a href="#">Edit</a></div>
-                <div class="col text-end"><a href="#" class="link-danger">Delete</a></div>
+                <div class="col text-end"><a href="/companies/{{$company->id}}/edit">Edit</a></div>
+                <div class="col text-end">
+                    <form method="POST" action="/companies/{{ $company->id }}/delete" id="delete-form">
+                        @csrf
+                        @method('DELETE')
+                        <a class="text-danger" href="#" x-data="{}" @click.prevent="document.querySelector('#delete-form')
+                        .submit()"
+                        >Delete</a>
+{{--                        <button type="submit">Delete</button>--}}
+                    </form>
+                </div>
             </div>
 
         </div>
