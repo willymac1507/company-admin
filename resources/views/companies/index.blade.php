@@ -38,7 +38,7 @@
                 </div>
             @endforeach
                 <x-create>
-                    <a href="/companies/create">Add new company</a>
+                    <a href="/company/create">Add new company</a>
                 </x-create>
         </ul>
     </x-card>

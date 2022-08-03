@@ -27,30 +27,30 @@
                 <ul class="list-group list-group-flush">
                     <div class="list-group-item">
                         <li class="row">
-                            <div class="col-2 border-end">
+                            <div class="col-3 border-end">
                                 Company Name
                             </div>
-                            <div class="col-10">
+                            <div class="col-9">
                                 <a href="/companies/{{ $employee->company->id }}">{{ $employee->company->name }}</a>
                             </div>
                         </li>
                     </div>
                     <div class="list-group-item">
                         <li class="row">
-                            <div class="col-2 border-end">
+                            <div class="col-3 border-end">
                                 Company Email
                             </div>
-                            <div class="col-10">
+                            <div class="col-9">
                                 <a href="mailto:{{ $employee->company->email }}">{{ $employee->company->email }}</a>
                             </div>
                         </li>
                     </div>
                     <div class="list-group-item">
                         <li class="row">
-                            <div class="col-2 border-end">
+                            <div class="col-3 border-end">
                                 Company Website
                             </div>
-                            <div class="col-10">
+                            <div class="col-9">
                                 <a href="{{ $employee->company->website }}">{{ $employee->company->website }}</a>
                             </div>
                         </li>

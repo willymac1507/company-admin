@@ -10,7 +10,14 @@
 
         </div>
         <div class="card-body">
-            <h3 class="card-title">{{ $company->name }}</h3>
+            <div class="row h-25 align-content-center">
+                <div class="col-10">
+                    <h3 class="card-title mb-0">{{ $company->name }}</h3>
+                </div>
+                <div class="col-2">
+                    <img src="/storage/{{ $company->logo }}" alt="logo" width="50">
+                </div>
+            </div>
             <hr>
             <div class="card-text">Email: <a href="mailto:{{ $company->email }}">{{ $company->email }}</a></div>
             <div class="card-text">Website: <a href="{{ $company->website }}">{{ $company->website }}</a></div>

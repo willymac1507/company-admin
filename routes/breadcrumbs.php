@@ -28,6 +28,11 @@ Breadcrumbs::for('editEmployee', function(BreadcrumbTrail $trail, Employee $empl
     ]));
 });
 
+Breadcrumbs::for('createEmployee', function (BreadcrumbTrail $trail): void {
+    $trail->parent('employees');
+    $trail->push('Create', route('createEmployee'));
+});
+
 Breadcrumbs::for('companies', function (BreadcrumbTrail $trail): void {
     $trail->parent('home');
     $trail->push('Companies', route('companies'));
@@ -45,4 +50,9 @@ Breadcrumbs::for('editCompany', function(BreadcrumbTrail $trail, Company $compan
     $trail->push('Edit', route('editCompany', [
         'company' => $company
     ]));
+});
+
+Breadcrumbs::for('createCompany', function (BreadcrumbTrail $trail): void {
+    $trail->parent('companies');
+    $trail->push('Create', route('createCompany'));
 });
