@@ -1,4 +1,5 @@
 <x-layout>
+    <x-breadcrumbs />
     <x-card>
         <div class="card-header">
             <div class="row">
@@ -18,11 +19,13 @@
 
         </div>
         <ul class="list-group list-group-flush">
+
             @foreach($employees as $employee)
                 <div class="list-group-item">
                     <li class="row">
                         <div class="col-3 border-end">
-                            <a href="/employees/#">{{ $employee->firstName }} {{ $employee->lastName }}</a>
+                            <a href="/employees/{{ $employee->id }}">{{ $employee->firstName }} {{ $employee->lastName
+                            }}</a>
                         </div>
                         <div class="col-3 border-end">
                             <a href="/companies/{{ $employee->company->id }}">{{ $employee->company->name }}</a>
@@ -37,7 +40,9 @@
                 </div>
 
             @endforeach
-
+            <x-create>
+                <a href="/employees/create">Add new employee</a>
+            </x-create>
         </ul>
     </x-card>
 </x-layout>

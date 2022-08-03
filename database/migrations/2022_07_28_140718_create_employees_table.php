@@ -18,7 +18,7 @@ class CreateEmployeesTable extends Migration
             $table->string('firstName');
             $table->string('lastName');
             $table->foreignId('company_id')->constrained()->cascadeOnDelete();
-            $table->string('email')->nullable()->unique();
+            $table->string('email')->nullable();
             $table->string('phoneNumber')->nullable();
             $table->timestamps();
         });

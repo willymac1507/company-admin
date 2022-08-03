@@ -1,4 +1,5 @@
 <x-layout>
+    <x-breadcrumbs />
     <x-card>
         <div class="card-header fs-5">
             <div class="row">
