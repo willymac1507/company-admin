@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
-use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Livewire\WithPagination;
 
 class EmployeeController extends Controller
 {
+    use WithPagination;
+
     /**
      * Create a new controller instance.
      *
@@ -20,8 +21,16 @@ class EmployeeController extends Controller
 
     public function index()
     {
-        return view('employees', [
+        return view('employees.index', [
             'employees' => Employee::orderBy('lastName')->paginate(10)
         ]);
+    }
+
+    public function show(Employee $employee)
+    {
+        return view('employees.show', [
+            'employee' => $employee
+        ]);
+
     }
 }
