@@ -17,6 +17,7 @@ use Illuminate\Support\Carbon;
  * @property string|null $website
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @method filter($value)
  * @method static \Database\Factories\CompanyFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Company newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Company newQuery()
@@ -40,6 +41,21 @@ class Company extends Model
         'website',
         'logo'
     ];
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query
+            ->when($filters['search'] ?? false, fn($query, $search) => $query
+                ->where(fn($query) => $query
+                    ->where('name', 'like', '%' . $search . '%')
+                    ->orWhere('email', 'like', '%' . $search . '%')
+                    ->orWhere('website', 'like', '%' . $search . '%')
+                ));
+
+        $query
+            ->when($filters['name'] ?? false, fn($query, $name) => $query
+                ->where('name', 'like', $name . '%'));
+    }
 
     public function employees(): HasMany
     {

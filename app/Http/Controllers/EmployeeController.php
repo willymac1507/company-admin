@@ -27,7 +27,8 @@ class EmployeeController extends Controller
     public function index()
     {
         return view('employees.index', [
-            'employees' => Employee::orderBy('lastName')->paginate(10)
+            'employees' => Employee::orderBy('lastName')->filter(request(['search', 'lastName']))->paginate
+            (10)->withQueryString()
         ]);
     }
 
@@ -39,14 +40,6 @@ class EmployeeController extends Controller
 
     }
 
-    /**
-     * @return Application|Factory|View
-     */
-    public function create()
-    {
-        return view('employees.create');
-    }
-
     public function store()
     {
         $attributes = $this->validateEmployee();
@@ -54,6 +47,26 @@ class EmployeeController extends Controller
         Employee::create($attributes);
 
         return redirect('/employees')->with('success', 'The employee has been created');
+    }
+
+    protected function validateEmployee(?Employee $employee = null): array
+    {
+        $employee ??= new Employee();
+        return request()->validate([
+            'firstName' => 'required',
+            'lastName' => 'required',
+            'email' => ['required', Rule::unique('employees', 'email')->ignore($employee)],
+            'phoneNumber' => 'required',
+            'company_id' => 'required'
+        ]);
+    }
+
+    /**
+     * @return Application|Factory|View
+     */
+    public function create()
+    {
+        return view('employees.create');
     }
 
     public function edit(Employee $employee)
@@ -75,17 +88,5 @@ class EmployeeController extends Controller
     {
         $employee->delete();
         return redirect('/employees')->with('success', 'Employee deleted');
-    }
-
-    protected function validateEmployee(?Employee $employee = null): array
-    {
-        $employee ??= new Employee();
-        return request()->validate([
-            'firstName' => 'required',
-            'lastName' => 'required',
-            'email' => ['required', Rule::unique('employees', 'email')->ignore($employee)],
-            'phoneNumber' => 'required',
-            'company_id' => 'required'
-        ]);
     }
 }

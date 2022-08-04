@@ -11794,4 +11794,38 @@ textarea.form-control-lg {
   font-size: 1.5rem;
 }
 
+.fs-7 {
+  font-size: 0.75rem;
+}
+
+@media screen and (max-width: 767px) {
+  .border-md {
+    border: 0 !important;
+  }
+}
+
+.table-head-font {
+  font-size: 1rem;
+}
+@media screen and (min-width: 768px) {
+  .table-head-font {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .mobile-pag {
+    display: none;
+  }
+}
+
+.medium-pag {
+  display: none;
+}
+@media screen and (min-width: 768px) {
+  .medium-pag {
+    display: block;
+  }
+}
+
 /*# sourceMappingURL=app.css.map */

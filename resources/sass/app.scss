@@ -11,3 +11,33 @@
 .card-header {
     font-size: 1.5rem;
 }
+
+.fs-7 {
+    font-size: 0.75rem;
+}
+
+.border-md {
+    @media screen and (max-width: 767px) {
+        border: 0!important;
+    }
+}
+
+.table-head-font {
+    font-size: 1rem;
+    @media screen and (min-width: 768px) {
+        font-size: 1.5rem;
+    }
+}
+
+.mobile-pag {
+    @media screen and (min-width: 768px) {
+        display: none;
+    }
+}
+
+.medium-pag {
+    display: none;
+    @media screen and (min-width: 768px) {
+        display: block;
+    }
+}

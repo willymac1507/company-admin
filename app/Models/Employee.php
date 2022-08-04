@@ -30,6 +30,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|Employee whereLastName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Employee wherePhoneNumber($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Employee whereUpdatedAt($value)
+ * @method filter($value)
  * @mixin Eloquent
  */
 class Employee extends Model
@@ -42,7 +43,30 @@ class Employee extends Model
         'email',
         'phoneNumber',
         'company_id'
-        ];
+    ];
+
+    /**
+     * @param $query
+     * @param array $filters
+     * @return void
+     */
+    public function scopeFilter($query, array $filters)
+    {
+        $query
+            ->when($filters['search'] ?? false, fn($query, $search) => $query
+                ->where(fn($query) => $query
+                    ->where('firstName', 'like', '%' . $search . '%')
+                    ->orWhere('lastName', 'like', '%' . $search . '%')
+                    ->orWhere('email', 'like', '%' . $search . '%')
+                    ->orWhere('phoneNumber', 'like', '%' . $search . '%')
+                    ->orWhereHas('company', fn($query) => $query
+                        ->where('name', 'like', '%' . $search . '%'))
+                ));
+
+        $query
+            ->when($filters['lastName'] ?? false, fn($query, $lastName) => $query
+                ->where('lastName', 'like', $lastName . '%'));
+    }
 
     public function company(): BelongsTo
     {

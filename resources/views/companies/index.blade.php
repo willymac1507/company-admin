@@ -1,5 +1,8 @@
 <x-header/>
 <x-breadcrumbs/>
+<x-filter alpha-search="name" main-search="/companies">
+
+</x-filter>
 <x-card>
     <div class="card-header">
         <div class="row">
@@ -42,6 +45,6 @@
         </x-create>
     </ul>
 </x-card>
-{{ $companies->links('paginator.bootstrap') }}
+{{ $companies->links() }}
 <x-footer/>
 
