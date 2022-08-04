@@ -22,7 +22,7 @@ Breadcrumbs::for('showEmployee', function (BreadcrumbTrail $trail, Employee $emp
 });
 
 Breadcrumbs::for('editEmployee', function(BreadcrumbTrail $trail, Employee $employee): void {
-    $trail->parent('showEmployee', ['employee' => $employee]);
+    $trail->parent('showEmployee', $employee);
     $trail->push('Edit', route('editEmployee', [
         'employee' => $employee
     ]));

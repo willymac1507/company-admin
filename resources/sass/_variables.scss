@@ -8,3 +8,11 @@ $line-height-base: 1.6;
 
 // Breadcrumbs
 $breadcrumb-divider: quote(">");
+
+// Position
+$position-values: (
+    0: 0,
+    3: 0.75rem,
+    50: 50%,
+    100: 100%
+);

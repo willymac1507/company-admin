@@ -7,11 +7,11 @@
         <x-form.label name="{{ $name }}"/>
     @endif
 
-    <input class="form-control"
-           name="{{ $name }}"
+    <select class="form-select"
+            name="{{ $name }}"
            id="{{ $name }}"
-        {{ $attributes(['value' => old($name), 'required' => true]) }}
-    >
-
+        {{ $attributes(['required' => true]) }}>
+    {{ $slot }}
+    </select>
     <x-form.error name="{{ $name }}"/>
 </x-form.field>
