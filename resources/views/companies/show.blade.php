@@ -9,9 +9,8 @@
                 <form method="POST" action="/companies/{{ $company->id }}/delete" id="delete-form">
                     @csrf
                     @method('DELETE')
-                    <a class="text-danger" href="#" x-data="{}" @click.prevent="document.querySelector('#delete-form')
-                        .submit()"
-                    >Delete</a>
+                    <a class="text-danger" href='#' data-bs-toggle="modal" data-bs-target="#confirmModal"
+                       aria-label="Delete">Delete</a>
                     {{--                        <button type="submit">Delete</button>--}}
                 </form>
             </div>
@@ -19,13 +18,15 @@
 
     </div>
     <div class="card-body">
-        <div class="row">
+        <div class="row pe-3">
             <div class="col-10">
                 <h3 class="card-title mt-2">{{ $company->name }}</h3>
             </div>
-            <div class="col-2 text-end">
+            <div class="col-2 text-end p-0 rounded-2">
                 @if(isset($company->logo))
-                    <img src="/storage/{{ $company->logo }}" alt="logo" width="50">
+                    <img class="rounded-2" src="/storage/{{ $company->logo }}" alt="logo" width="50">
+                @else
+                    <img class="rounded-2" src="https://picsum.photos/100" alt="logo" width="50">
                 @endif
             </div>
         </div>
@@ -48,7 +49,8 @@
                                     $employee->lastName }}</a>
                             </div>
                             <div class="employee__email col-12 col-md-4 border-end border-md">
-                                {{ $employee->email }}
+                                <a href="mailto:{{ $employee->email }}">{{
+                                $employee->email }}</a>
                             </div>
                             <div class="employee__phone col-12 col-md-3 text-md-end">
                                 {{ $employee->phoneNumber }}
@@ -63,5 +65,5 @@
     </div>
 
 </x-card>
-{{ $emps->links('paginator.bootstrap') }}
+{{ $emps->links() }}
 <x-footer/>

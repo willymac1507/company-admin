@@ -9,9 +9,8 @@
                 <form method="POST" action="/employees/{{ $employee->id }}/delete" id="delete-form">
                     @csrf
                     @method('DELETE')
-                    <a class="text-danger" href="#" x-data="{}" @click.prevent="document.querySelector('#delete-form')
-                        .submit()"
-                    >Delete</a>
+                    <a class="text-danger" href="#" data-bs-toggle="modal" data-bs-target="#confirmModal"
+                       aria-label="Delete">Delete</a>
                 </form>
             </div>
         </div>

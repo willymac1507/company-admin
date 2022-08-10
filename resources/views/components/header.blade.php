@@ -6,7 +6,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('fonts/fonts.css') }}">
+{{--    <link rel="stylesheet" href="{{ asset('fonts/fonts.css') }}">--}}
+    <link rel="stylesheet" href="https://i.icomoon.io/public/83773635e2/camelAdmin/style.css">
     <script src="//unpkg.com/alpinejs" defer></script>
     <title>camelAdmin</title>
 </head>
@@ -14,6 +15,7 @@
 <!-- START body -->
 <body class="px-2 py-4 max-w-7xl mx-auto">
 <x-flash />
+<x-modal title="Confirm Delete">Are you sure you want to delete the record?</x-modal>
 
 <nav class="navbar  navbar-expand-md bg-light">
     <div class="container-fluid">
@@ -48,9 +50,6 @@
                                 </li>
                                 <li>
                                     <a class="dropdown-item" href="/employees">Employees</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="/admin">Admin</a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item" href="#" x-data="{}"

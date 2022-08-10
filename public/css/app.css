@@ -11802,10 +11802,31 @@ a.icon:visited {
   color: inherit;
 }
 
+.dashIcon {
+  width: 50%;
+  transition: 600ms;
+}
+.dashIcon:hover {
+  opacity: 75%;
+}
+
+.dashWord {
+  width: 50%;
+  opacity: 0;
+  transition: 600ms;
+}
+.dashWord:hover {
+  opacity: 100%;
+}
+
 @media screen and (max-width: 767px) {
   .employee__email:before {
     font-family: "IcoMoon", serif;
     content: "";
+  }
+  .employee__phone:before {
+    font-family: "IcoMoon", serif;
+    content: "";
   }
 }
 

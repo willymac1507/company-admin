@@ -12,11 +12,11 @@
             <div class="col-3 d-none d-md-block border-end table-head-font">
                 Email
             </div>
-            <div class="col-3 d-none d-md-block border-end table-head-font">
+            <div class="col-4 d-none d-md-block border-end table-head-font">
                 Website
             </div>
-            <div class="col-3 d-none d-md-block text-end table-head-font">
-                #Employees
+            <div class="col-2 d-none d-md-block text-end table-head-font">
+                Staff
             </div>
         </div>
 
@@ -31,10 +31,10 @@
                     <div class="col-3 d-none d-md-block border-end">
                         <a href="mailto:{{ $company->email }}">{{ $company->email }}</a>
                     </div>
-                    <div class="col-3 d-none d-md-block border-end">
+                    <div class="col-4 d-none d-md-block border-end">
                         <a href="{{ $company->website }}">{{ $company->website }}</a>
                     </div>
-                    <div class="col-3 d-none d-md-block text-end">
+                    <div class="col-2 d-none d-md-block text-end">
                         {{ $company->employees->count() }}
                     </div>
                 </li>

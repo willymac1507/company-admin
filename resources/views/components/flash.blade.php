@@ -10,9 +10,11 @@
     </div>
     <script>
         setTimeout(() => {
-            const message = document.getElementById('flashMessage');
-            message.classList.add('flashHidden');
-        }, 4000)
+            // const message = document.getElementById('flashMessage');
+            // message.classList.add('flashHidden');
+            const message = $('#flashMessage');
+            message.slideUp();
+        }, 3000)
     </script>
 
 @endif

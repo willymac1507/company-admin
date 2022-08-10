@@ -21,12 +21,35 @@ a.icon {
     }
 }
 
+.dashIcon {
+    width: 50%;
+    transition: 600ms;
+    &:hover {
+        opacity: 75%;
+    }
+}
+
+.dashWord {
+    width: 50%;
+    opacity: 0;
+    transition: 600ms;
+    &:hover {
+        opacity: 100%;
+    }
+}
+
 .employee {
-    &__email {
-        @media screen and (max-width: 767px) {
+    @media screen and (max-width: 767px) {
+        &__email {
             &:before {
                 font-family: 'IcoMoon', serif;
                 content: '\e9f2';
+            }
+        }
+        &__phone {
+            &:before {
+                font-family: 'IcoMoon', serif;
+                content: '\e9e3';
             }
         }
     }
@@ -57,7 +80,7 @@ a.icon {
 
 .border-md {
     @media screen and (max-width: 767px) {
-        border: 0!important;
+        border: 0 !important;
     }
 }
 
