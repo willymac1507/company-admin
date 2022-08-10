@@ -1,9 +1,9 @@
 <x-header/>
 <x-breadcrumbs/>
 <x-card>
-    <div class="card-header fs-5">
+    <div class="card-header card-header-font">
         <div class="row">
-            <div class="col-10">Company Details</div>
+            <div class="col-7 col-md-9 col-lg-10">Company Details</div>
             <div class="col text-end"><a href="/companies/{{$company->id}}/edit">Edit</a></div>
             <div class="col text-end">
                 <form method="POST" action="/companies/{{ $company->id }}/delete" id="delete-form">
@@ -42,14 +42,15 @@
                 @foreach($emps as $employee)
                     <div class="list-group-item">
                         <li class="row">
-                            <div class="col-4 border-end">
-                                <a href="/employees/{{ $employee->id }}">{{ $employee->firstName }} {{
+                            <div class="col-12 col-md-4 border-end border-md">
+                                <a class="employee__name" href="/employees/{{ $employee->id }}">{{ $employee->firstName
+                                }} {{
                                     $employee->lastName }}</a>
                             </div>
-                            <div class="col-4 border-end">
+                            <div class="employee__email col-12 col-md-4 border-end border-md">
                                 {{ $employee->email }}
                             </div>
-                            <div class="col-3 text-end">
+                            <div class="employee__phone col-12 col-md-3 text-md-end">
                                 {{ $employee->phoneNumber }}
                             </div>
                         </li>

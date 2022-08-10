@@ -1,9 +1,9 @@
 <x-header/>
 <x-breadcrumbs/>
 <x-card>
-    <div class="card-header fs-5">
+    <div class="card-header card-header-font">
         <div class="row">
-            <div class="col-10">Employee Details</div>
+            <div class="col-8 col-md-9 col-lg-10">Employee Details</div>
             <div class="col text-end"><a href="/employees/{{ $employee->id }}/edit">Edit</a></div>
             <div class="col text-end">
                 <form method="POST" action="/employees/{{ $employee->id }}/delete" id="delete-form">
@@ -35,7 +35,10 @@
             <ul class="list-group list-group-flush">
                 <div class="list-group-item">
                     <li class="row">
-                        <div class="col-3 border-end">
+                        <div class="col-3 border-end d-md-none">
+                            <span class="icon icon-office"></span>
+                        </div>
+                        <div class="col-3 border-end d-none d-md-block">
                             Company Name
                         </div>
                         <div class="col-9">
@@ -45,7 +48,10 @@
                 </div>
                 <div class="list-group-item">
                     <li class="row">
-                        <div class="col-3 border-end">
+                        <div class="col-3 border-end d-md-none">
+                            <span class="icon icon-envelop3"></span>
+                        </div>
+                        <div class="col-3 border-end d-none d-md-block">
                             Company Email
                         </div>
                         <div class="col-9">
@@ -55,7 +61,10 @@
                 </div>
                 <div class="list-group-item">
                     <li class="row">
-                        <div class="col-3 border-end">
+                        <div class="col-3 border-end d-md-none">
+                            <span class="icon icon-sphere"></span>
+                        </div>
+                        <div class="col-3 border-end d-none d-md-block">
                             Company Website
                         </div>
                         <div class="col-9">

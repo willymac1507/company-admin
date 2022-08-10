@@ -4,13 +4,13 @@
 <x-card>
     <div class="card-header">
         <div class="row">
-            <div class="col-6 col-md-3 border-end table-head-font">
+            <div class="col-12 col-md-3 border-end table-head-font">
                 Employees
             </div>
             <div class="col-3 d-none d-md-block border-end table-head-font">
                 Company
             </div>
-            <div class="col-6 col-md-3 border-end border-md table-head-font">
+            <div class="col-3 d-none d-md-block border-end table-head-font">
                 Email
             </div>
             <div class="col-3 d-none d-md-block text-end table-head-font">
@@ -24,14 +24,14 @@
         @foreach($employees as $employee)
             <div class="list-group-item">
                 <li class="row">
-                    <div class="col-6 col-md-3 border-end">
-                        <a href="/employees/{{ $employee->id }}">{{ $employee->firstName }} {{ $employee->lastName
-                            }}</a>
+                    <div class="col-12 col-md-3 border-end">
+                        <a href="/employees/{{ $employee->id }}">{{ $employee->lastName }}, {{ $employee->firstName
+                        }}</a>
                     </div>
                     <div class="col-3 d-none d-md-block border-end">
                         <a href="/companies/{{ $employee->company->id }}">{{ $employee->company->name }}</a>
                     </div>
-                    <div class="col-6 col-md-3 border-end border-md">
+                    <div class="col-3 d-none d-md-block border-end">
                         {{ $employee->email }}
                     </div>
                     <div class="col-3 d-none d-md-block text-end">

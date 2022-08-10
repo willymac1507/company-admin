@@ -11790,8 +11790,44 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+.flashHidden {
+  display: none;
+}
+
+a.icon {
+  color: #000;
+  text-decoration: none;
+}
+a.icon:visited {
+  color: inherit;
+}
+
+@media screen and (max-width: 767px) {
+  .employee__email:before {
+    font-family: "IcoMoon", serif;
+    content: "";
+  }
+}
+
+.filter-list:not(:first-child) {
+  margin-left: 8px;
+}
+@media screen and (min-width: 768px) {
+  .filter-list:not(:first-child) {
+    margin-left: 4px;
+  }
+}
+
 .card-header {
   font-size: 1.5rem;
+}
+.card-header-font {
+  font-size: 0.75rem;
+}
+@media screen and (min-width: 768px) {
+  .card-header-font {
+    font-size: 1.125rem;
+  }
 }
 
 .fs-7 {
@@ -11814,16 +11850,19 @@ textarea.form-control-lg {
 }
 
 @media screen and (min-width: 768px) {
-  .mobile-pag {
+  .mobile-pag,
+.sm-down-only {
     display: none;
   }
 }
 
-.medium-pag {
+.medium-pag,
+.md-up-only {
   display: none;
 }
 @media screen and (min-width: 768px) {
-  .medium-pag {
+  .medium-pag,
+.md-up-only {
     display: block;
   }
 }

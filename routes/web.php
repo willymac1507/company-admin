@@ -37,3 +37,7 @@ Route::get('employee/create', [EmployeeController::class, 'create'])->name('crea
 Route::post('employee/create', [EmployeeController::class, 'store'])->name('storeEmployee');
 Route::patch('employees/{employee:id}/edit', [EmployeeController::class, 'update'])->name('updateEmployee');
 Route::delete('employees/{employee:id}/delete', [EmployeeController::class, 'destroy'])->name('deleteEmployee');
+
+Route::get('/test', function() {
+    return view('test');
+});

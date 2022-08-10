@@ -31,31 +31,47 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false">
-                            Welcome back, {{ auth()->user()->name }}
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li>
-                                <a class="dropdown-item" href="/">Dashboard</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="/companies">Companies</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="/employees">Employees</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="/admin">Admin</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#" x-data="{}"
-                                   @click.prevent="document.querySelector('#logout-form').submit()">Log Out</a>
-                            </li>
-                        </ul>
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">Dashboard</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="/companies" class="nav-link">Companies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/employees" class="nav-link">Employees</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/admin" class="nav-link">Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" x-data="{}"
+                           @click.prevent="document.querySelector('#logout-form').submit()">Log Out</a>
+                    </li>
+
+                    {{--                    <li class="nav-item dropdown">--}}
+                    {{--                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"--}}
+                    {{--                           aria-expanded="false">--}}
+                    {{--                            Welcome back, {{ auth()->user()->name }}--}}
+                    {{--                        </a>--}}
+                    {{--                        <ul class="dropdown-menu dropdown-menu-end">--}}
+                    {{--                            <li>--}}
+                    {{--                                <a class="dropdown-item" href="/">Dashboard</a>--}}
+                    {{--                            </li>--}}
+                    {{--                            <li>--}}
+                    {{--                                <a class="dropdown-item" href="/companies">Companies</a>--}}
+                    {{--                            </li>--}}
+                    {{--                            <li>--}}
+                    {{--                                <a class="dropdown-item" href="/employees">Employees</a>--}}
+                    {{--                            </li>--}}
+                    {{--                            <li>--}}
+                    {{--                                <a class="dropdown-item" href="/admin">Admin</a>--}}
+                    {{--                            </li>--}}
+                    {{--                            <li>--}}
+                    {{--                                <a class="dropdown-item" href="#" x-data="{}"--}}
+                    {{--                                   @click.prevent="document.querySelector('#logout-form').submit()">Log Out</a>--}}
+                    {{--                            </li>--}}
+                    {{--                        </ul>--}}
+                    {{--                    </li>--}}
                     <form id="logout-form" class="hidden" action="/logout" method="post">
                         @csrf
                     </form>
@@ -70,6 +86,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>
-<x-flash />
+<x-flash/>
 </body>
 </html>

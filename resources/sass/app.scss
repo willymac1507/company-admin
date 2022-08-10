@@ -8,8 +8,47 @@
 // Bootstrap
 @import '../../node_modules/bootstrap/scss/bootstrap.scss';
 
+.flashHidden {
+    display: none;
+}
+
+a.icon {
+    color: #000;
+    text-decoration: none;
+
+    &:visited {
+        color: inherit;
+    }
+}
+
+.employee {
+    &__email {
+        @media screen and (max-width: 767px) {
+            &:before {
+                font-family: 'IcoMoon', serif;
+                content: '\e9f2';
+            }
+        }
+    }
+}
+
+.filter-list:not(:first-child) {
+    margin-left: 8px;
+    @media screen and (min-width: 768px) {
+        margin-left: 4px;
+    }
+}
+
 .card-header {
     font-size: 1.5rem;
+
+    &-font {
+        font-size: .75rem;
+
+        @media screen and (min-width: 768px) {
+            font-size: 1.125rem;
+        }
+    }
 }
 
 .fs-7 {
@@ -29,13 +68,15 @@
     }
 }
 
-.mobile-pag {
+.mobile-pag,
+.sm-down-only {
     @media screen and (min-width: 768px) {
         display: none;
     }
 }
 
-.medium-pag {
+.medium-pag,
+.md-up-only {
     display: none;
     @media screen and (min-width: 768px) {
         display: block;
