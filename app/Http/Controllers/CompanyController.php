@@ -61,17 +61,18 @@ class CompanyController extends Controller
         }
 
         $company->update($attributes);
-        return redirect('/companies')->with('success', 'Company updated!');
+        return redirect('/companies/' . $company->id)->with('success', 'The company has been updated.');
     }
 
-    protected function validateCompany(?Company $company = null): array
+    protected function validateCompany(Company $company = null): array
     {
-        $company ??= new Company();
+        $company  = null ? new Company() : $company;
         return request()->validate([
-            'name' => 'required',
-            'logo' => $company->exists ? ['image'] : ['required', 'image'],
-            'email' => ['required', Rule::unique('companies', 'email')->ignore($company)],
-            'website' => 'required',
+            'name' => ['required', 'string', 'min:2', 'unique:companies,name,'.$company->id],
+            'logo' => ['image', 'dimensions:max_width=100,max_height=100'],
+            'email' => ['required', 'regex:/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/i', 'unique:companies,email,'
+                .$company->id],
+            'website' => ['required', 'unique:companies,name,'.$company->id],
         ]);
     }
 
@@ -83,7 +84,7 @@ class CompanyController extends Controller
 
         Company::create($attributes);
 
-        return redirect('/companies')->with('success', 'Your post has been created!');
+        return redirect('/companies')->with('success', 'The company has been added.');
     }
 
     /**
@@ -97,6 +98,6 @@ class CompanyController extends Controller
     public function destroy(Company $company)
     {
         $company->delete();
-        return redirect('/companies')->with('success', 'Company deleted!');
+        return redirect('/companies')->with('success', 'The company has been removed.');
     }
 }

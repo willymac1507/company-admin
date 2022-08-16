@@ -5,18 +5,20 @@
     <div class="card-body">
         <form action="{{ route('createEmployee') }}" method="post" enctype="multipart/form-data">
             @csrf
-            <x-form.input name="firstName" label="First Name"/>
-            <x-form.input name="lastName" label="Last Name"/>
-            <x-form.input name="email" type="email"/>
-            <x-form.input name="phoneNumber" label="Telephone"/>
-            <x-form.select name="company_id" label="Employer">
-                <option selected>Employer</option>
+            <div class="required__text">* required</div>
+            <x-form.input name="firstName" label="First Name" valid="required"/>
+            <x-form.input name="lastName" label="Last Name" valid="required"/>
+            <x-form.input name="email" label="Email" valid="required" type="email"/>
+            <x-form.input name="phoneNumber" label="Telephone" valid="required"/>
+            <x-form.select name="company_id" label="Employer" valid="required">
+                <option value="" selected>Employer</option>
                 @foreach(\App\Models\Company::all()->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE) as $company)
                     <option value="{{ $company->id }}">{{ $company->name }}</option>
                 @endforeach
             </x-form.select>
             <div class="mt-4">
-                <x-form.button>Create</x-form.button>
+                <x-form.cancelButton location="employees">Cancel</x-form.cancelButton>
+                <x-form.submitButton>Create</x-form.submitButton>
             </div>
         </form>
     </div>

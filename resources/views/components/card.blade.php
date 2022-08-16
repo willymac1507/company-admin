@@ -1,6 +1,6 @@
-@props(['col' => 8])
+@props(['col' => 10])
 
-<div class="container-fluid mt-3">
+<div class="container mt-3">
     <div class="row justify-content-center">
         <div class="col-lg-{{ $col }}">
             <div class="card">

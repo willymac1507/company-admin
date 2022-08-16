@@ -10,6 +10,7 @@
     <input class="form-control"
            name="{{ $name }}"
            id="{{ $name }}"
+           type="email"
         {{ $attributes(['value' => old($name), 'required' => true]) }}
     >
 

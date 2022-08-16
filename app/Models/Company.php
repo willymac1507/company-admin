@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Database\Factories\CompanyFactory;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -18,17 +20,17 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @method filter($value)
- * @method static \Database\Factories\CompanyFactory factory(...$parameters)
- * @method static \Illuminate\Database\Eloquent\Builder|Company newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Company newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Company query()
- * @method static \Illuminate\Database\Eloquent\Builder|Company whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Company whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Company whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Company whereLogo($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Company whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Company whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Company whereWebsite($value)
+ * @method static CompanyFactory factory(...$parameters)
+ * @method static Builder|Company newModelQuery()
+ * @method static Builder|Company newQuery()
+ * @method static Builder|Company query()
+ * @method static Builder|Company whereCreatedAt($value)
+ * @method static Builder|Company whereEmail($value)
+ * @method static Builder|Company whereId($value)
+ * @method static Builder|Company whereLogo($value)
+ * @method static Builder|Company whereName($value)
+ * @method static Builder|Company whereUpdatedAt($value)
+ * @method static Builder|Company whereWebsite($value)
  * @mixin \Eloquent
  */
 class Company extends Model
@@ -45,19 +47,23 @@ class Company extends Model
     public function scopeFilter($query, array $filters)
     {
         $query
-            ->when($filters['search'] ?? false, fn($query, $search) => $query
-                ->where(fn($query) => $query
+            ->when($filters['search'] ?? false, function ($query, $search) {
+                $query
                     ->where('name', 'like', '%' . $search . '%')
                     ->orWhere('email', 'like', '%' . $search . '%')
-                    ->orWhere('website', 'like', '%' . $search . '%')
-                ));
+                    ->orWhere('website', 'like', '%' . $search . '%');
+            });
+
 
         $query
-            ->when($filters['name'] ?? false, fn($query, $name) => $query
-                ->where('name', 'like', $name . '%'));
+            ->when($filters['name'] ?? false, function ($query, $name) {
+                $query
+                    ->where('name', 'like', $name . '%');
+            });
     }
 
-    public function employees(): HasMany
+    public
+    function employees(): HasMany
     {
         return $this->hasMany(Employee::class)->orderBy('lastName');
     }
