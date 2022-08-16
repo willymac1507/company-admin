@@ -70,9 +70,6 @@
                             <a class="nav-link" href="/employees">Employees</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/admin">Admin</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="#" x-data="{}"
                                @click.prevent="document.querySelector('#logout-form').submit()">Log Out</a>
                         </li>

@@ -53,19 +53,23 @@ class Employee extends Model
     public function scopeFilter($query, array $filters)
     {
         $query
-            ->when($filters['search'] ?? false, fn($query, $search) => $query
-                ->where(fn($query) => $query
+            ->when($filters['search'] ?? false, function ($query, $search) {
+                $query
                     ->where('firstName', 'like', '%' . $search . '%')
                     ->orWhere('lastName', 'like', '%' . $search . '%')
                     ->orWhere('email', 'like', '%' . $search . '%')
                     ->orWhere('phoneNumber', 'like', '%' . $search . '%')
-                    ->orWhereHas('company', fn($query) => $query
-                        ->where('name', 'like', '%' . $search . '%'))
-                ));
+                    ->orWhereHas('company', function ($query) use ($search) {
+                        $query
+                            ->where('name', 'like', '%' . $search . '%');
+                        });
+            });
 
         $query
-            ->when($filters['lastName'] ?? false, fn($query, $lastName) => $query
-                ->where('lastName', 'like', $lastName . '%'));
+            ->when($filters['lastName'] ?? false, function ($query, $lastName) {
+                $query
+                    ->where('lastName', 'like', $lastName . '%');
+            });
     }
 
     public function company(): BelongsTo

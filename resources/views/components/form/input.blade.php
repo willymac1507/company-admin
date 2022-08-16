@@ -1,8 +1,8 @@
-@props(['name', 'label'])
+@props(['name', 'label', 'valid' => null])
 
 <x-form.field>
     @if (isset($label))
-        <x-form.label name="{{ $label }}"/>
+        <x-form.label name="{{ $label }}" class="{{ $valid }}"/>
     @else
         <x-form.label name="{{ $name }}"/>
     @endif

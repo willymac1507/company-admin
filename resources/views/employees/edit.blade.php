@@ -6,11 +6,13 @@
         <form action="/employees/{{ $employee->id }}/edit" method="post" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
-            <x-form.input name="firstName" label="First Name" :value="old('firstName', $employee->firstName)"/>
-            <x-form.input name="lastName" label="Last Name" :value="old('lastName', $employee->lastName)"/>
-            <x-form.input name="email" type="email" :value="old('email', $employee->email)"/>
-            <x-form.input name="phoneNumber" label="Telephone" :value="old('phoneNumber', $employee->phoneNumber)"/>
-            <x-form.select name="company_id" label="Employer">
+            <div class="required__text">* required</div>
+            <x-form.input name="firstName" label="First Name" valid="required" :value="old('firstName',
+            $employee->firstName)"/>
+            <x-form.input name="lastName" label="Last Name" valid="required" :value="old('lastName', $employee->lastName)"/>
+            <x-form.input name="email" label="email" valid="required" type="email" :value="old('email', $employee->email)"/>
+            <x-form.input name="phoneNumber" label="Telephone" valid="required" :value="old('phoneNumber', $employee->phoneNumber)"/>
+            <x-form.select name="company_id" label="Employer" valid="required">
                 @foreach(\App\Models\Company::all()->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE) as $company)
                     <option
                         value="{{ $company->id }}"
@@ -19,7 +21,7 @@
                 @endforeach
             </x-form.select>
             <div class="mt-4">
-                <x-form.button>Update</x-form.button>
+                <x-form.submitButton>Update</x-form.submitButton>
             </div>
         </form>
     </div>

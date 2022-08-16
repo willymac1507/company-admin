@@ -1,13 +1,13 @@
-@if (session()->has('success'))
-    {{--    <div x-data="{ show: true}"--}}
-    {{--         x-init="setTimeout(() => show = false, 4000)"--}}
-    {{--         x-show="show" x-transition--}}
-    {{--         class="position-fixed bg-success text-white py-2 px-4 rounded-3 top-0 w-100 fs-6">--}}
-    {{--        <p>{{ session('success') }}</p>--}}
-    {{--    </div>--}}
-    <div id="flashMessage" class="alert alert-success alert-block text-center">
-        <strong>{{ session('success') }}</strong>
-    </div>
+@if (session()->has('success')||session()->has('error'))
+    @if(session()->has('success'))
+        <div id="flashMessage" class="alert alert-success alert-block text-center">
+            <strong>{{ session('success') }}</strong>
+        </div>
+    @else
+        <div id="flashMessage" class="alert alert-danger alert-block text-center">
+            <strong>{{ session('error') }}</strong>
+        </div>
+    @endif
     <script>
         setTimeout(() => {
             // const message = document.getElementById('flashMessage');

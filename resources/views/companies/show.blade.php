@@ -32,7 +32,7 @@
         </div>
         <hr>
         <div class="card-text">Email: <a href="mailto:{{ $company->email }}">{{ $company->email }}</a></div>
-        <div class="card-text">Website: <a href="{{ $company->website }}">{{ $company->website }}</a></div>
+        <div class="card-text">Website: <a href="{{ $company->website }}" target="_blank">{{ $company->website }}</a></div>
         <hr>
         <x-card :col="12">
             <div class="card-header fs-6">
@@ -44,9 +44,8 @@
                     <div class="list-group-item">
                         <li class="row">
                             <div class="col-12 col-md-4 border-end border-md">
-                                <a class="employee__name" href="/employees/{{ $employee->id }}">{{ $employee->firstName
-                                }} {{
-                                    $employee->lastName }}</a>
+                                <a class="employee__name" href="/employees/{{ $employee->id }}">{{
+                                $employee->lastName }}, {{ $employee->firstName }} </a>
                             </div>
                             <div class="employee__email col-12 col-md-4 border-end border-md">
                                 <a href="mailto:{{ $employee->email }}">{{

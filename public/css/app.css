@@ -11802,6 +11802,17 @@ a.icon:visited {
   color: inherit;
 }
 
+.required:after {
+  content: "*";
+  vertical-align: super;
+  font-size: 0.75rem;
+  color: red;
+}
+.required__text {
+  color: red;
+  font-size: 0.75rem;
+}
+
 .dashIcon {
   width: 50%;
   transition: 600ms;

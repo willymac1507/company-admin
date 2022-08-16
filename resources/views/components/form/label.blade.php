@@ -1,6 +1,6 @@
-@props(['name'])
+@props(['name', 'class' => null])
 
-<label class="form-label text-capitalize"
+<label class="form-label text-capitalize {{ $class }}"
        for="{{ $name }}"
 >
     {{ $name }}

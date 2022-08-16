@@ -46,17 +46,24 @@ class EmployeeController extends Controller
 
         Employee::create($attributes);
 
-        return redirect('/employees')->with('success', 'The employee has been created');
+        return redirect('/employees')->with('success', 'The employee has been added.');
     }
 
     protected function validateEmployee(?Employee $employee = null): array
     {
-        $employee ??= new Employee();
+        $employee = null ? new Employee() : $employee;
         return request()->validate([
-            'firstName' => 'required',
-            'lastName' => 'required',
-            'email' => ['required', Rule::unique('employees', 'email')->ignore($employee)],
-            'phoneNumber' => 'required',
+            'firstName' => ['required', 'string', 'min:2'],
+            'lastName' => ['required', 'string', 'min:2'],
+            'email' => [
+                'required',
+                'regex:/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/i',
+                Rule::unique('employees', 'email')->ignore($employee)
+            ],
+            'phoneNumber' => [
+                'required',
+                'regex:/^\s*(?:\+?(\d{1,3}))?[ ]?([(]?(\d{4,5})[)]?)?[ ]?((\d{6,7}))\s*$/'
+            ],
             'company_id' => 'required'
         ]);
     }
@@ -81,12 +88,12 @@ class EmployeeController extends Controller
         $attributes = $this->validateEmployee($employee);
 
         $employee->update($attributes);
-        return redirect('/employees')->with('success', 'Employee updated');
+        return redirect('/employees')->with('success', 'The employee has been updated.');
     }
 
     public function destroy(Employee $employee)
     {
         $employee->delete();
-        return redirect('/employees')->with('success', 'Employee deleted');
+        return redirect('/employees')->with('success', 'The employee has been removed.');
     }
 }

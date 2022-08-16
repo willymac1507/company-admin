@@ -4,8 +4,11 @@
 <x-card>
     <div class="card-header">
         <div class="row">
-            <div class="col-12 col-md-3 border-end table-head-font">
+            <div class="col-12 col-md-3 border-end border-md table-head-font">
                 Employees
+                @if(request('lastName'))
+                    ({{ strtoupper(request('lastName')) }})
+                @endif
             </div>
             <div class="col-3 d-none d-md-block border-end table-head-font">
                 Company
@@ -24,7 +27,7 @@
         @foreach($employees as $employee)
             <div class="list-group-item">
                 <li class="row">
-                    <div class="col-12 col-md-3 border-end">
+                    <div class="col-12 col-md-3 border-end border-md">
                         <a href="/employees/{{ $employee->id }}">{{ $employee->lastName }}, {{ $employee->firstName
                         }}</a>
                     </div>
@@ -32,10 +35,10 @@
                         <a href="/companies/{{ $employee->company->id }}">{{ $employee->company->name }}</a>
                     </div>
                     <div class="col-3 d-none d-md-block border-end">
-                        {{ $employee->email }}
+                        <a href="mailto:{{ $employee->email }}">{{ $employee->email }}</a>
                     </div>
                     <div class="col-3 d-none d-md-block text-end">
-                        {{ $employee->phoneNumber }}
+                        <a href="tel:{{ $employee->phoneNumber }}">{{ $employee->phoneNumber }}</a>
                     </div>
                 </li>
             </div>
