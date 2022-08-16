@@ -14,6 +14,7 @@
             <x-form.input name="website" label="website" valid="required" type="url" :value="old('website',
             $company->website)"/>
             <div class="mt-4">
+                <x-form.cancelButton location="companies">Cancel</x-form.cancelButton>
                 <x-form.submitButton>Update</x-form.submitButton>
             </div>
         </form>
