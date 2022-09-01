@@ -3,33 +3,24 @@
 namespace App\Models;
 
 use Eloquent;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\Employee
  *
  * @property int $id
- * @property string $firstName
- * @property string $lastName
+ * @property string $first_name
+ * @property string $last_name
  * @property int $company_id
  * @property string|null $email
- * @property string|null $phoneNumber
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string|null $phone_number
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @method static \Database\Factories\EmployeeFactory factory(...$parameters)
- * @method static \Illuminate\Database\Eloquent\Builder|Employee newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Employee newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Employee query()
- * @method static \Illuminate\Database\Eloquent\Builder|Employee whereCompanyId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Employee whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Employee whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Employee whereFirstName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Employee whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Employee whereLastName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Employee wherePhoneNumber($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Employee whereUpdatedAt($value)
  * @method filter($value)
  * @mixin Eloquent
  */
@@ -38,12 +29,19 @@ class Employee extends Model
     use HasFactory;
 
     protected $fillable = [
-        'firstName',
-        'lastName',
+        'first_name',
+        'last_name',
         'email',
-        'phoneNumber',
+        'phone_number',
         'company_id'
     ];
+
+    protected function name(): Attribute
+    {
+        return Attribute::make(
+            get: fn($value, $attributes) => $attributes['first_name'] . ' ' . $attributes['last_name'],
+        );
+    }
 
     /**
      * @param $query
@@ -55,10 +53,10 @@ class Employee extends Model
         $query
             ->when($filters['search'] ?? false, function ($query, $search) {
                 $query
-                    ->where('firstName', 'like', '%' . $search . '%')
-                    ->orWhere('lastName', 'like', '%' . $search . '%')
+                    ->where('first_name', 'like', '%' . $search . '%')
+                    ->orWhere('last_name', 'like', '%' . $search . '%')
                     ->orWhere('email', 'like', '%' . $search . '%')
-                    ->orWhere('phoneNumber', 'like', '%' . $search . '%')
+                    ->orWhere('phone_number', 'like', '%' . $search . '%')
                     ->orWhereHas('company', function ($query) use ($search) {
                         $query
                             ->where('name', 'like', '%' . $search . '%');
@@ -68,7 +66,7 @@ class Employee extends Model
         $query
             ->when($filters['lastName'] ?? false, function ($query, $lastName) {
                 $query
-                    ->where('lastName', 'like', $lastName . '%');
+                    ->where('last_name', 'like', $lastName . '%');
             });
     }
 

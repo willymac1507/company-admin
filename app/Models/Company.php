@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Database\Factories\CompanyFactory;
+use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -31,7 +32,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Company whereName($value)
  * @method static Builder|Company whereUpdatedAt($value)
  * @method static Builder|Company whereWebsite($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class Company extends Model
 {
@@ -65,6 +66,6 @@ class Company extends Model
     public
     function employees(): HasMany
     {
-        return $this->hasMany(Employee::class)->orderBy('lastName');
+        return $this->hasMany(Employee::class)->orderBy('last_name');
     }
 }

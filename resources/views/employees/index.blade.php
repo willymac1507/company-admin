@@ -28,8 +28,9 @@
             <div class="list-group-item">
                 <li class="row">
                     <div class="col-12 col-md-3 border-end border-md">
-                        <a href="/employees/{{ $employee->id }}">{{ $employee->lastName }}, {{ $employee->firstName
-                        }}</a>
+                        <a href="/employees/{{ $employee->id }}">
+                            {{ $employee->last_name }}, {{ $employee->first_name }}
+                        </a>
                     </div>
                     <div class="col-3 d-none d-md-block border-end">
                         <a href="/companies/{{ $employee->company->id }}">{{ $employee->company->name }}</a>
@@ -38,7 +39,7 @@
                         <a href="mailto:{{ $employee->email }}">{{ $employee->email }}</a>
                     </div>
                     <div class="col-3 d-none d-md-block text-end">
-                        <a href="tel:{{ $employee->phoneNumber }}">{{ $employee->phoneNumber }}</a>
+                        <a href="tel:{{ $employee->phone_number }}">{{ $employee->phone_number }}</a>
                     </div>
                 </li>
             </div>

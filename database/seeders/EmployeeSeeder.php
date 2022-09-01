@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Company;
 use App\Models\Employee;
 use Illuminate\Database\Seeder;
 
@@ -12,11 +13,11 @@ class EmployeeSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
-        for ($i = 1; $i <= 50; $i++) {
+        foreach (Company::pluck('id') as $companyId) {
             Employee::factory(20)->create([
-                'company_id' => $i
+                'company_id' => $companyId
             ]);
         }
 

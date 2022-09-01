@@ -10,8 +10,6 @@
     @endif
     <script>
         setTimeout(() => {
-            // const message = document.getElementById('flashMessage');
-            // message.classList.add('flashHidden');
             const message = $('#flashMessage');
             message.slideUp();
         }, 3000)

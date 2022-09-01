@@ -39,20 +39,20 @@
                 Employees
             </div>
             <ul class="list-group list-group-flush">
-                <?php $emps = $company->employees()->paginate(10); ?>
-                @foreach($emps as $employee)
+<!--                --><?php //$emps = $company->employees()->paginate(10); ?>
+                @foreach($employees as $employee)
                     <div class="list-group-item">
                         <li class="row">
                             <div class="col-12 col-md-4 border-end border-md">
                                 <a class="employee__name" href="/employees/{{ $employee->id }}">{{
-                                $employee->lastName }}, {{ $employee->firstName }} </a>
+                                $employee->last_name }}, {{ $employee->first_name }} </a>
                             </div>
                             <div class="employee__email col-12 col-md-4 border-end border-md">
                                 <a href="mailto:{{ $employee->email }}">{{
                                 $employee->email }}</a>
                             </div>
                             <div class="employee__phone col-12 col-md-3 text-md-end">
-                                {{ $employee->phoneNumber }}
+                                {{ $employee->phone_number }}
                             </div>
                         </li>
                     </div>
@@ -64,5 +64,5 @@
     </div>
 
 </x-card>
-{{ $emps->links() }}
+{{ $employees->links() }}
 <x-footer/>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreEmployeeRequest;
 use App\Models\Employee;
 use Livewire\WithPagination;
 use Illuminate\Contracts\Foundation\Application;
@@ -27,7 +28,7 @@ class EmployeeController extends Controller
     public function index()
     {
         return view('employees.index', [
-            'employees' => Employee::orderBy('lastName')->filter(request(['search', 'lastName']))->paginate
+            'employees' => Employee::orderBy('last_name')->orderBy('first_name') ->filter(request(['search', 'lastName']))->paginate
             (10)->withQueryString()
         ]);
     }
@@ -40,32 +41,13 @@ class EmployeeController extends Controller
 
     }
 
-    public function store()
+    public function store(StoreEmployeeRequest $request)
     {
-        $attributes = $this->validateEmployee();
+        $attributes = $request->validated();
 
         Employee::create($attributes);
 
         return redirect('/employees')->with('success', 'The employee has been added.');
-    }
-
-    protected function validateEmployee(?Employee $employee = null): array
-    {
-        $employee = null ? new Employee() : $employee;
-        return request()->validate([
-            'firstName' => ['required', 'string', 'min:2'],
-            'lastName' => ['required', 'string', 'min:2'],
-            'email' => [
-                'required',
-                'regex:/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/i',
-                Rule::unique('employees', 'email')->ignore($employee)
-            ],
-            'phoneNumber' => [
-                'required',
-                'regex:/^\s*(?:\+?(\d{1,3}))?[ ]?([(]?(\d{4,5})[)]?)?[ ]?((\d{6,7}))\s*$/'
-            ],
-            'company_id' => 'required'
-        ]);
     }
 
     /**
@@ -83,9 +65,9 @@ class EmployeeController extends Controller
         ]);
     }
 
-    public function update(Employee $employee)
+    public function update(Employee $employee, StoreEmployeeRequest $request)
     {
-        $attributes = $this->validateEmployee($employee);
+        $attributes = $request->validated();
 
         $employee->update($attributes);
         return redirect('/employees')->with('success', 'The employee has been updated.');
