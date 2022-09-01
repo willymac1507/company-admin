@@ -7,11 +7,13 @@
             @csrf
             @method('PATCH')
             <div class="required__text">* required</div>
-            <x-form.input name="firstName" label="First Name" valid="required" :value="old('firstName',
-            $employee->firstName)"/>
-            <x-form.input name="lastName" label="Last Name" valid="required" :value="old('lastName', $employee->lastName)"/>
+            <x-form.input name="first_name" label="First Name" valid="required" :value="old('first_name',
+            $employee->first_name)"/>
+            <x-form.input name="last_name" label="Last Name" valid="required" :value="old('last_name',
+            $employee->last_name)"/>
             <x-form.input name="email" label="email" valid="required" type="email" :value="old('email', $employee->email)"/>
-            <x-form.input name="phoneNumber" label="Telephone" valid="required" :value="old('phoneNumber', $employee->phoneNumber)"/>
+            <x-form.input name="phone_number" label="Telephone" valid="required" :value="old('phone_number',
+            $employee->phone_number)"/>
             <x-form.select name="company_id" label="Employer" valid="required">
                 @foreach(\App\Models\Company::all()->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE) as $company)
                     <option

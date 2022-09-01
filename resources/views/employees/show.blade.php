@@ -17,15 +17,14 @@
 
     </div>
     <div class="card-body">
-        <?php $name = $employee->firstName . ' ' . $employee->lastName; ?>
-        <h3 class="card-title">{{ $name }}</h3>
+        <h3 class="card-title">{{ $employee->name }}</h3>
         <hr>
         <div class="card-text">Email: <a
                 href="mailto:{{ $employee->email }}">
                 {{ $employee->email }}</a></div>
         <div class="card-text">Telephone: <a
-                href="tel:{{ $employee->phoneNumber }}">
-                {{ $employee->phoneNumber }}</a></div>
+                href="tel:{{ $employee->phone_number }}">
+                {{ $employee->phone_number }}</a></div>
         <hr>
         <x-card :col="12">
             <div class="card-header fs-6">

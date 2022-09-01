@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCompanyRequest;
 use App\Models\Company;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -41,7 +42,8 @@ class CompanyController extends Controller
     public function show(Company $company)
     {
         return view('companies.show', [
-            'company' => $company
+            'company' => $company,
+            'employees' => $company->employees()->orderBy('last_name')->orderBy('first_name')->paginate(10)
         ]);
     }
 
@@ -52,39 +54,27 @@ class CompanyController extends Controller
         ]);
     }
 
-    public function update(Company $company)
+    public function update(Company $company, StoreCompanyRequest $request)
     {
-        $attributes = $this->validateCompany($company);
+        $attributes = $request->validated();
 
         if (isset($attributes['logo'])) {
             $attributes['logo'] = request()->file('logo')->store('logos');
         }
 
         $company->update($attributes);
-        return redirect('/companies/' . $company->id)->with('success', 'The company has been updated.');
+        return to_route('showCompany', ['company' => $company])->with('success', 'The company has been updated.');
     }
 
-    protected function validateCompany(Company $company = null): array
+    public function store(StoreCompanyRequest $request)
     {
-        $company  = null ? new Company() : $company;
-        return request()->validate([
-            'name' => ['required', 'string', 'min:2', 'unique:companies,name,'.$company->id],
-            'logo' => ['image', 'dimensions:max_width=100,max_height=100'],
-            'email' => ['required', 'regex:/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/i', 'unique:companies,email,'
-                .$company->id],
-            'website' => ['required', 'unique:companies,name,'.$company->id],
-        ]);
-    }
-
-    public function store()
-    {
-        $attributes = $this->validateCompany();
+        $attributes = $request->validated();
 
         $attributes['logo'] = request()->file('logo')->store('logos');
 
         Company::create($attributes);
 
-        return redirect('/companies')->with('success', 'The company has been added.');
+        return to_route('companies')->with('success', 'The company has been added.');
     }
 
     /**
@@ -98,6 +88,6 @@ class CompanyController extends Controller
     public function destroy(Company $company)
     {
         $company->delete();
-        return redirect('/companies')->with('success', 'The company has been removed.');
+        return to_route('companies')->with('success', 'The company has been removed.');
     }
 }
