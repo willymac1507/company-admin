@@ -63,7 +63,7 @@ class CompanyController extends Controller
         }
 
         $company->update($attributes);
-        return redirect('/companies/' . $company->id)->with('success', 'The company has been updated.');
+        return to_route('showCompany', ['company' => $company])->with('success', 'The company has been updated.');
     }
 
     public function store(StoreCompanyRequest $request)
@@ -74,7 +74,7 @@ class CompanyController extends Controller
 
         Company::create($attributes);
 
-        return redirect('/companies')->with('success', 'The company has been added.');
+        return to_route('companies')->with('success', 'The company has been added.');
     }
 
     /**
@@ -88,6 +88,6 @@ class CompanyController extends Controller
     public function destroy(Company $company)
     {
         $company->delete();
-        return redirect('/companies')->with('success', 'The company has been removed.');
+        return to_route('companies')->with('success', 'The company has been removed.');
     }
 }

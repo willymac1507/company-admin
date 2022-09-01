@@ -47,7 +47,7 @@ class EmployeeController extends Controller
 
         Employee::create($attributes);
 
-        return redirect('/employees')->with('success', 'The employee has been added.');
+        return to_route('employees')->with('success', 'The employee has been added.');
     }
 
     /**
@@ -70,12 +70,12 @@ class EmployeeController extends Controller
         $attributes = $request->validated();
 
         $employee->update($attributes);
-        return redirect('/employees')->with('success', 'The employee has been updated.');
+        return to_route('showEmployee', ['employee' => $employee])->with('success', 'The employee has been updated.');
     }
 
     public function destroy(Employee $employee)
     {
         $employee->delete();
-        return redirect('/employees')->with('success', 'The employee has been removed.');
+        return to_route('employees')->with('success', 'The employee has been removed.');
     }
 }
